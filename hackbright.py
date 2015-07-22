@@ -89,7 +89,7 @@ def get_project_grades(student_github):
     db_cursor.execute(QUERY, (student_github,))
     info = db_cursor.fetchall()
     print info
-
+    return info
 
 
 def handle_input():
