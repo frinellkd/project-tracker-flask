@@ -77,6 +77,20 @@ def assign_grade(github, title, grade):
     print "Successfully assigned grade of %s for %s in %s" % (
         grade, github, title)
 
+def get_project_grades(student_github):
+    """ Given a github hadle return all projects and the grades received"""
+
+    QUERY= """
+        SELECT project_title, grade
+        FROM Grades
+        WHERE student_github = ?
+        """
+
+    db_cursor.execute(QUERY, (student_github,))
+    info = db_cursor.fetchall()
+    print info
+
+
 
 def handle_input():
     """Main loop.
@@ -111,6 +125,10 @@ def handle_input():
         elif command == "assign_grade":
             github, title, grade = args
             assign_grade(github, title, grade)
+
+        elif command == "get_project_grades":
+            student_github = args[0]
+            get_project_grades(student_github)
 
 
 if __name__ == "__main__":
