@@ -37,6 +37,7 @@ def make_new_student(first_name, last_name, github):
     print "Successfully added student: %s %s" % (first_name, last_name)
 
 
+
 def get_project_by_title(title):
     """Given a project title, print information about the project."""
 
@@ -48,7 +49,7 @@ def get_project_by_title(title):
     db_cursor.execute(QUERY, (title,))
     row = db_cursor.fetchone()
     print "Title: %s\nDescription: %s\nMax Grade: %d" % row
-
+    return (title, description, max_grade)
 
 def get_grade_by_github_title(github, title):
     """Print grade student received for a project."""
@@ -63,6 +64,7 @@ def get_grade_by_github_title(github, title):
     row = db_cursor.fetchone()
     print "Student %s in project %s received grade of %s" % (
         github, title, row[0])
+    return ()
 
 
 def assign_grade(github, title, grade):
